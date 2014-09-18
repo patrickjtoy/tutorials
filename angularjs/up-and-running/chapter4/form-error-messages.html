@@ -1,0 +1,50 @@
+<!-- File: chapter4/form-error-messages.html -->
+
+<!doctype html>
+<html lang="en" data-ng-app="notesApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Notes App</title>
+  </head>
+  <body data-ng-controller="MainCtrl as ctrl">
+
+    <form ng-submit="ctrl.submit()" name="myForm">
+      <input type="text"
+             name="uname"
+             data-ng-model="ctrl.user.username"
+             required
+             data-ng-minlength="4">
+      <span data-ng-show="myForm.uname.$error.required">
+        This is a required field
+      </span>
+      <span data-ng-show="myForm.uname.$error.minlength">
+        Minimum length required is 4
+      </span>
+      <span data-ng-show="myForm.uname.$invalid">
+        This field is invalid
+      </span>
+      <input type="password"
+             name="pwd"
+             data-ng-model="ctrl.user.password"
+             required>
+      <span data-ng-show="myForm.pwd.$error.required">
+        This is a required field
+      </span>
+      <input type="submit"
+             value="Submit"
+             data-ng-disabled="myForm.$invalid">
+    </form>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.js"></script>
+    <script type="text/javascript">
+      angular.module('notesApp', [])
+        .controller('MainCtrl', [function() {
+          var self = this;
+          self.submit = function() {
+            console.log('User clicked submit with ', self.user);
+          };
+        }]);
+    </script>
+
+  </body>
+</html>

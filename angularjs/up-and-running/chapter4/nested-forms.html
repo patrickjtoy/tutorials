@@ -1,0 +1,61 @@
+<!-- File: chapter4/nested-forms.html -->
+
+<!doctype html>
+<html lang="en" data-ng-app>
+  <head>
+    <meta charset="utf-8">
+    <title>Notes App</title>
+  </head>
+  <body>
+
+    <form novalidate name="myForm">
+
+      <input type="text"
+             class="username"
+             name="uname"
+             data-ng-model="ctrl.user.username"
+             required
+             placeholder="Username"
+             data-ng-minlength="4" />
+      <input type="password"
+             class="password"
+             name="pwd"
+             data-ng-model="ctrl.user.password"
+             placeholder="Password"
+             required />
+
+      <ng-form name="profile">
+        <input type="text"
+               name="firstName"
+               data-ng-model="ctrl.user.profile.firstName"
+               placeholder="First Name"
+               required />
+        <input type="text"
+               name="middleName"
+               data-ng-model="ctrl.user.profile.middleName"
+               placeholder="Middle Name" />
+        <input type="text"
+               name="lastName"
+               data-ng-model="ctrl.user.profile.lastName"
+               placeholder="Last Name"
+               required />
+        <input type="date"
+               name="dob"
+               data-ng-model="ctrl.user.profile.dob"
+               placeholder="Date of Birth" />
+        </ng-form>
+
+        <span data-ng-show="myForm.profile.$invalid">
+          Please fill out the profile information
+        </span>
+
+        <input type="submit"
+               value="Submit"
+               data-ng-disabled="myForm.$invalid" />
+
+    </form>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.js"></script>
+
+  </body>
+</html>

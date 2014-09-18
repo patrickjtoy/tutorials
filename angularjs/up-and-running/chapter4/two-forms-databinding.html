@@ -1,0 +1,40 @@
+<!-- File: chapter4/two-forms-databinding.html -->
+
+<!doctype html>
+<html lang="en" data-ng-app="notesApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Notes App</title>
+  </head>
+  <body data-ng-controller="MainCtrl as ctrl">
+
+    <form data-ng-submit="ctrl.submit1()">
+      <input type="text" data-ng-model="ctrl.username">
+      <input type="password" data-ng-model="ctrl.password">
+      <input type="submit" value="Submit">
+    </form>
+
+    <form data-ng-submit="ctrl.submit2()">
+      <input type="text" data-ng-model="ctrl.user.username">
+      <input type="password" data-ng-model="ctrl.user.password">
+      <input type="submit" value="Submit">
+    </form>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.js"></script>
+    <script type="text/javascript">
+      angular.module('notesApp', [])
+        .controller('MainCtrl', [function() {
+          var self = this;
+          self.submit1 = function() {
+            // Create user object to send to the server
+            var user = {username: self.username, password: self.password};
+            console.log('First form submit with ', user);
+          };
+          self.submit2 = function() {
+            console.log('Second form submit with ', self.user);
+          };
+        }]);
+    </script>
+
+  </body>
+</html>

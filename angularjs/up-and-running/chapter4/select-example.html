@@ -1,0 +1,41 @@
+<!-- File: chapter4/select-example.html -->
+
+<!doctype html>
+<html lang="en" data-ng-app="notesApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Notes App</title>
+  </head>
+  <body data-ng-controller="MainCtrl as ctrl">
+
+    <div>
+      <select data-ng-model="ctrl.selectedCountryId"
+              data-ng-options="c.id as c.label for c in ctrl.countries">
+      </select>
+      Selected Country ID: {{ctrl.selectedCountryId}}
+    </div>
+
+    <div>
+      <select data-ng-model="ctrl.selectedCountry"
+              data-ng-options="c.label for c in ctrl.countries">
+      </select>
+      Selected Country: {{ctrl.selectedCountry}}
+    </div>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.js"></script>
+    <script type="text/javascript">
+      angular.module('notesApp', [])
+        .controller('MainCtrl', [function() {
+          var self = this;
+          self.countries = [
+            {label: 'USA', id: 1},
+            {label: 'India', id: 2},
+            {label: 'Other', id: 3}
+          ];
+          self.selectedCountryId = 2;
+          self.selectedCountry = self.countries[1];
+        }]);
+    </script>
+
+  </body>
+</html>
